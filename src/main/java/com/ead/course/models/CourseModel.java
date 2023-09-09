@@ -61,8 +61,10 @@ public class CourseModel implements Serializable {
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //Controle de acesso
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
-    private Set<CouserUserModel> couserUsers; //Um courseModel para multiplos CourseUserModel
+    private Set<CourseUserModel> couserUsers; //Um courseModel para multiplos CourseUserModel
 
-
+    public CourseUserModel convertToCourseUserModel(UUID userId){
+        return new CourseUserModel(null, userId, this);
+    }
 
 }
