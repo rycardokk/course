@@ -11,6 +11,4 @@ public class ModuleDto {
     private String title;
     @NotBlank
     private String description;
-
-
 }

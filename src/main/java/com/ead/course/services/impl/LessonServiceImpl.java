@@ -1,6 +1,5 @@
 package com.ead.course.services.impl;
 
-
 import com.ead.course.models.LessonModel;
 import com.ead.course.repositories.LessonRepository;
 import com.ead.course.services.LessonService;
@@ -26,7 +25,7 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public Optional<LessonModel> findLessonIntoModel(UUID moduleId, UUID lessonId) {
+    public Optional<LessonModel> findLessonIntoModule(UUID moduleId, UUID lessonId) {
         return lessonRepository.findLessonIntoModule(moduleId, lessonId);
     }
 
@@ -36,8 +35,8 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public List<LessonModel> findAllByModule(UUID lessonId) {
-        return lessonRepository.findAllLessonsIntoModule(lessonId);
+    public List<LessonModel> findAllByModule(UUID moduleId) {
+        return lessonRepository.findAllLessonsIntoModule(moduleId);
     }
 
     @Override

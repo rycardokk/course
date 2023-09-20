@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
-
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
@@ -27,44 +26,38 @@ public class CourseModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID courseId;
-
     @Column(nullable = false, length = 150)
     private String name;
-
     @Column(nullable = false, length = 250)
     private String description;
-
     @Column
     private String imageUrl;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")
     @Column(nullable = false)
     private LocalDateTime creationDate;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")
     @Column(nullable = false)
     private LocalDateTime lastUpdateDate;
-
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private CourseStatus courseStatus;
-
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private CourseLevel courseLevel;
-
     @Column(nullable = false)
     private UUID userInstructor;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //vai ignorar esse campo no getallcourses
-    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY )
     @Fetch(FetchMode.SUBSELECT)
     private Set<ModuleModel> modules;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) //Controle de acesso
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
-    private Set<CourseUserModel> couserUsers; //Um courseModel para multiplos CourseUserModel
+    private Set<CourseUserModel> coursesUsers;
 
-    public CourseUserModel convertToCourseUserModel(UUID userId){
-        return new CourseUserModel(null, userId, this);
+    public CourseUserModel convertToCourseUserModel(UUID userID){
+        return new CourseUserModel(null, userID, this);
     }
 
 }

@@ -1,7 +1,6 @@
 package com.ead.course.services.impl;
 
 import com.ead.course.services.UtilsService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +10,8 @@ import java.util.UUID;
 public class UtilsServiceImpl implements UtilsService {
 
 
-    // Constrói a URL para a chamada HTTP com base nos parâmetros fornecidos.
-    public String CreateUrlGetAllUsersByCourse(UUID courseId, Pageable pageable){
-        return "/users?courseId=" + courseId + "&page=" + pageable.getPageNumber() +
-                "&size=" + pageable.getPageSize() + "&sort=" + pageable.getSort().toString().replaceAll(": ",",");
+    public String createUrlGetAllUsersByCourse(UUID courseId, Pageable pageable) {
+        return "/users?courseId=" + courseId + "&page=" + pageable.getPageNumber() + "&size="
+                + pageable.getPageSize() + "&sort=" + pageable.getSort().toString().replaceAll(": ", ",");
     }
-
 }

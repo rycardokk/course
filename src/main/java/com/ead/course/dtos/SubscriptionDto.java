@@ -10,5 +10,4 @@ public class SubscriptionDto {
 
     @NotNull
     private UUID userId;
-
 }

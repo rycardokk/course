@@ -18,5 +18,4 @@ public class UserDto {
     private String phoneNumber;
     private String cpf;
     private String imageUrl;
-
 }

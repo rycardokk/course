@@ -47,7 +47,7 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public List<ModuleModel> findAllByCourse(UUID courseId) {
-        return moduleRepository.findAllModulesIntoCourse(courseId);
+        return moduleRepository.findAllLModulesIntoCourse(courseId);
     }
 
     @Override
@@ -59,6 +59,4 @@ public class ModuleServiceImpl implements ModuleService {
     public Page<ModuleModel> findAllByCourse(Specification<ModuleModel> spec, Pageable pageable) {
         return moduleRepository.findAll(spec, pageable);
     }
-
-
 }
