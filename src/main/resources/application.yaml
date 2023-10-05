@@ -6,6 +6,13 @@ server:
 spring:
   application:
     name: ead-course-service
+  config:
+    import: 'optional:configserver:'
+  cloud:
+    config:
+      discovery:
+        service-id: ead-config-server
+
   datasource:
     url:  jdbc:postgresql://localhost:5432/ead-course-v2
     username: postgres
@@ -40,9 +47,20 @@ ead:
   broker:
     exchange:
       userEventExchange: ead.userevent
+      notificationCommandExchange: ead.noficationcommand
     queue:
       userEventQueue:
         name: ead.userevent.ms.course
+    key:
+      notificationCommandKey: ms.notification
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - refresh
+          - health
 
 eureka:
   client:
