@@ -27,20 +27,28 @@ import java.util.UUID;
 @Service
 public class CourseServiceImpl implements CourseService {
 
-    @Autowired
+    final
     CourseRepository courseRepository;
 
-    @Autowired
+    final
     ModuleRepository moduleRepository;
 
-    @Autowired
+    final
     LessonRepository lessonRepository;
 
-    @Autowired
+    final
     UserRepository userRepository;
 
-    @Autowired
+    final
     NotificationCommandPublisher notificationCommandPublisher;
+
+    public CourseServiceImpl(CourseRepository courseRepository, ModuleRepository moduleRepository, LessonRepository lessonRepository, UserRepository userRepository, NotificationCommandPublisher notificationCommandPublisher) {
+        this.courseRepository = courseRepository;
+        this.moduleRepository = moduleRepository;
+        this.lessonRepository = lessonRepository;
+        this.userRepository = userRepository;
+        this.notificationCommandPublisher = notificationCommandPublisher;
+    }
 
 
     @Transactional
@@ -101,36 +109,5 @@ public class CourseServiceImpl implements CourseService {
             log.warn("Error sending notification!");
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
